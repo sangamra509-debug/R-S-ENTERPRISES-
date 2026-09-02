@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="R@S Enterprises - Premium Tea in Silver Packet">
+<title>R@S Enterprises | Premium Tea</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
+body{font-family:Arial,"Noto Sans",sans-serif;background:#f7f7f2;color:#222;line-height:1.6}
+header{background:#174d2a;color:#fff;padding:14px 6%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:1000}
+.logo{font-size:24px;font-weight:700}.logo span{color:#d8b84c}
+nav a{color:#fff;text-decoration:none;margin-left:16px;font-weight:700;font-size:14px}
+nav a:hover{color:#d8b84c}
+.hero{min-height:76vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:40px 20px;background:linear-gradient(135deg,#174d2a,#286b3b);color:#fff}
+.hero-content{max-width:760px}.hero h1{font-size:52px;margin-bottom:12px}.hero h2{font-size:27px;color:#d8b84c;margin-bottom:18px}.hero p{font-size:18px;margin-bottom:28px}
+.btn{display:inline-block;border:0;background:#d8b84c;color:#17351f;padding:12px 24px;border-radius:30px;text-decoration:none;font-weight:700;cursor:pointer;margin:5px}
+.btn-green{background:#174d2a;color:#fff}.btn-red{background:#c62828;color:#fff}
+section{padding:60px 6%}.section-title{text-align:center;margin-bottom:35px}.section-title h2{color:#174d2a;font-size:34px}.section-title p{color:#666}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px}
+.product-card{background:#fff;padding:25px 20px;border-radius:15px;text-align:center;box-shadow:0 5px 20px rgba(0,0,0,.08)}
+.tea-icon{font-size:54px}.product-card h3{color:#174d2a;font-size:22px;margin:8px 0}.product-card p{color:#666}
+.packing{display:inline-block;background:#eee;border-radius:20px;padding:5px 12px;margin:10px 0;font-size:13px;font-weight:700}
+.product-card select,.order-form input,.order-form textarea,.order-form select{width:100%;padding:12px;border:1px solid #ccc;border-radius:8px;font-size:16px;background:#fff}
+.product-card select{margin:8px 0 10px}
+.cart-section{background:#fff}.cart-box{max-width:850px;margin:auto;background:#f7f7f2;padding:24px;border-radius:15px}
+.cart-item{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:15px 0;border-bottom:1px solid #ddd}
+.qty-controls{white-space:nowrap}.qty-controls button{width:32px;height:32px;border:0;border-radius:50%;background:#174d2a;color:#fff;cursor:pointer;font-size:18px}
+.qty{display:inline-block;min-width:32px;text-align:center;font-weight:700}
+.total{text-align:right;font-size:22px;font-weight:700;color:#174d2a;margin-top:20px}
+.order-form{max-width:720px;margin:auto;background:#fff;padding:28px;border-radius:15px;box-shadow:0 5px 20px rgba(0,0,0,.08)}
+.order-form label{display:block;margin:14px 0 5px;font-weight:700;color:#174d2a}
+.order-form textarea{min-height:100px;resize:vertical}
+.about{background:#fff;text-align:center}.about p{max-width:800px;margin:10px auto;color:#555;font-size:18px}
+.contact{background:#174d2a;color:#fff;text-align:center}.contact .section-title h2{color:#fff}.contact-info{font-size:18px;margin:12px}.phone{color:#d8b84c;font-weight:700}
+footer{background:#102c19;color:#fff;text-align:center;padding:24px}footer span{color:#d8b84c}
+#cartItems p{color:#666}
+
+.payment-box{margin-top:18px;padding:16px;background:#f7f7f2;border-radius:10px}
+.payment-options{display:grid;gap:10px;margin-top:8px}
+.payment-options label{display:flex!important;align-items:center;gap:8px;margin:0!important;font-weight:600!important;color:#222!important}
+.payment-options input[type=radio]{width:auto}
+.upi-note{font-size:13px;color:#666;margin-top:8px}
+
+@media(max-width:700px){
+header{flex-direction:column;gap:10px}nav a{margin:0 5px;font-size:12px}
+.hero h1{font-size:37px}.hero h2{font-size:22px}.hero p{font-size:16px}
+section{padding:48px 5%}.section-title h2{font-size:29px}.cart-item{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo">R@S <span>ENTERPRISES</span></div>
+<nav>
+<a href="#home">Home</a><a href="#products">Products</a><a href="#cart">Cart</a><a href="#order">Order</a><a href="#contact">Contact</a>
+</nav>
+</header>
+
+<section class="hero" id="home">
+<div class="hero-content">
+<h1>R@S ENTERPRISES</h1>
+<h2>हर कप में ताज़गी और स्वाद ☕</h2>
+<p>अच्छी गुणवत्ता वाली चाय पत्ती, अब आकर्षक Silver Packet Packing में।</p>
+<a href="#products" class="btn">Products देखें</a>
+<a href="#order" class="btn">Order Now</a>
+</div>
+</section>
+
+<section id="products">
+<div class="section-title">
+<h2>🍵 हमारे Products</h2>
+<p>पैकेट का वजन चुनें और Cart में Add करें</p>
+</div>
+
+<div class="products">
+<div class="product-card">
+<div class="tea-icon">🍵</div><h3>Premium Tea</h3>
+<p>स्वादिष्ट और खुशबूदार चाय।</p>
+<div class="packing">✨ Silver Packet Packing</div>
+<select id="premiumWeight">
+<option value="250" data-price="80">250g — ₹80</option>
+<option value="500" data-price="160">500g — ₹160</option>
+<option value="1000" data-price="299">1kg — ₹299</option>
+</select>
+<button class="btn btn-green" onclick="addSelectedProduct('Premium Tea','premiumWeight')">Add to Cart</button>
+</div>
+
+<div class="product-card">
+<div class="tea-icon">🌿</div><h3>Green Tea</h3>
+<p>हल्की और ताज़गी भरी चाय।</p>
+<div class="packing">✨ Silver Packet Packing</div>
+<select id="greenWeight">
+<option value="250" data-price="80">250g — ₹80</option>
+<option value="500" data-price="160">500g — ₹160</option>
+<option value="1000" data-price="299">1kg — ₹299</option>
+</select>
+<button class="btn btn-green" onclick="addSelectedProduct('Green Tea','greenWeight')">Add to Cart</button>
+</div>
+
+<div class="product-card">
+<div class="tea-icon">🫖</div><h3>Daily Tea</h3>
+<p>रोज़ाना के लिए स्वादिष्ट चाय।</p>
+<div class="packing">✨ Silver Packet Packing</div>
+<select id="dailyWeight">
+<option value="250" data-price="80">250g — ₹80</option>
+<option value="500" data-price="160">500g — ₹160</option>
+<option value="1000" data-price="299">1kg — ₹299</option>
+</select>
+<button class="btn btn-green" onclick="addSelectedProduct('Daily Tea','dailyWeight')">Add to Cart</button>
+</div>
+
+<div class="product-card">
+<div class="tea-icon">☕</div><h3>Special Tea</h3>
+<p>खास स्वाद के लिए Special Tea।</p>
+<div class="packing">✨ Silver Packet Packing</div>
+<select id="specialWeight">
+<option value="250" data-price="80">250g — ₹80</option>
+<option value="500" data-price="160">500g — ₹160</option>
+<option value="1000" data-price="299">1kg — ₹299</option>
+</select>
+<button class="btn btn-green" onclick="addSelectedProduct('Special Tea','specialWeight')">Add to Cart</button>
+</div>
+</div>
+</section>
+
+<section class="cart-section" id="cart">
+<div class="section-title"><h2>🛒 आपका Cart</h2></div>
+<div class="cart-box">
+<div id="cartItems"><p>आपका Cart अभी खाली है।</p></div>
+<div class="total">Total: ₹<span id="cartTotal">0</span></div>
+<div style="text-align:right;margin-top:15px">
+<a href="#order" class="btn">Order Form</a>
+<button class="btn btn-red" onclick="clearCart()">Cart खाली करें</button>
+</div>
+</div>
+</section>
+
+<section id="order">
+<div class="section-title"><h2>📝 Order Form</h2><p>जानकारी भरें और चुना हुआ Order WhatsApp पर भेजें</p></div>
+<div class="order-form">
+<label>आपका नाम *</label>
+<input type="text" id="customerName" placeholder="अपना नाम लिखें">
+
+<label>मोबाइल नंबर *</label>
+<input type="tel" id="customerPhone" maxlength="10" inputmode="numeric" placeholder="10 अंकों का मोबाइल नंबर">
+
+<label>पूरा Address *</label>
+<textarea id="customerAddress" placeholder="अपना पूरा पता लिखें"></textarea>
+
+<label>Order WhatsApp नंबर चुनें *</label>
+<select id="whatsappNumber">
+<option value="917894505926">7894505926</option>
+<option value="917383363616">7383363616</option>
+</select>
+
+<div class="payment-box">
+<label>💳 Payment Method *</label>
+<div class="payment-options">
+<label><input type="radio" name="paymentMethod" value="Cash on Delivery" checked> Cash on Delivery (COD)</label>
+<label><input type="radio" name="paymentMethod" value="UPI"> UPI Payment</label>
+</div>
+<div class="upi-note">UPI ID: <strong>7894505926-3@ybl</strong></div>
+<div id="upiPayArea" style="display:none;margin-top:12px">
+<button type="button" class="btn" onclick="payViaUPI()">📱 UPI से Pay Now</button>
+<p class="upi-note">UPI ऐप खुलने पर राशि और विवरण जाँचकर भुगतान करें।</p>
+</div>
+</div>
+
+<div class="payment-box">
+<label>🚚 Delivery Option *</label>
+<div class="payment-options">
+<label><input type="radio" name="deliveryOption" value="Home Delivery" checked> Home Delivery</label>
+<label><input type="radio" name="deliveryOption" value="Self Pickup"> Self Pickup</label>
+</div>
+<div class="upi-note">Home Delivery उपलब्धता आपके क्षेत्र/डिलीवरी एरिया के अनुसार होगी।</div>
+</div>
+
+<div style="margin-top:18px;padding:15px;background:#f7f7f2;border-radius:10px">
+<strong>Cart Total: ₹<span id="formTotal">0</span></strong>
+</div>
+
+<button class="btn btn-green" onclick="placeOrder()">📲 WhatsApp पर Order भेजें</button>
+</div>
+</section>
+
+<section class="about">
+<div class="section-title"><h2>हमारे बारे में</h2></div>
+<p><strong>R@S Enterprises</strong> का उद्देश्य ग्राहकों तक अच्छी गुणवत्ता वाली चाय पहुँचाना है।</p>
+<p>हमारी Tea Silver Packet Packing में उपलब्ध है।</p>
+</section>
+
+<section class="contact" id="contact">
+<div class="section-title"><h2>Contact Us</h2><p style="color:#fff">Order या जानकारी के लिए संपर्क करें</p></div>
+<div class="contact-info"><strong>🏪 R@S Enterprises</strong></div>
+<div class="contact-info">📍 Chiranjeevipur (Shahpur), Bachhwara,<br>Begusarai, Bihar – 851111</div>
+<div class="contact-info">📞 <span class="phone">7894505926</span></div>
+<div class="contact-info">📞 <span class="phone">7383363616</span></div>
+<a class="btn" href="tel:7894505926">📞 Call 7894505926</a>
+<a class="btn" href="tel:7383363616">📞 Call 7383363616</a>
+</section>
+
+<footer>
+<p>© 2026 <span>R@S Enterprises</span>. All Rights Reserved.</p>
+<p>Premium Tea • Green Tea • Daily Tea • Special Tea</p>
+</footer>
+
+<script>
+let cart=[];
+
+function addSelectedProduct(productName,selectId){
+const select=document.getElementById(selectId);
+const option=select.options[select.selectedIndex];
+const weight=Number(option.value);
+const price=Number(option.dataset.price);
+
+const existing=cart.find(item=>item.name===productName && item.weight===weight);
+if(existing){existing.quantity++}
+else{cart.push({name:productName,weight:weight,price:price,quantity:1})}
+
+updateCart();
+document.getElementById("cart").scrollIntoView({behavior:"smooth"});
+}
+
+function increaseQty(index){cart[index].quantity++;updateCart()}
+
+function decreaseQty(index){
+cart[index].quantity--;
+if(cart[index].quantity<=0)cart.splice(index,1);
+updateCart();
+}
+
+function clearCart(){cart=[];updateCart()}
+
+function updateCart(){
+const box=document.getElementById("cartItems");
+let total=0;
+
+if(cart.length===0){
+box.innerHTML="<p>आपका Cart अभी खाली है।</p>";
+document.getElementById("cartTotal").innerText="0";
+document.getElementById("formTotal").innerText="0";
+return;
+}
+
+box.innerHTML="";
+cart.forEach((item,index)=>{
+const itemTotal=item.price*item.quantity;
+total+=itemTotal;
+const weightText=item.weight===1000?"1kg":item.weight+"g";
+
+box.innerHTML+=`
+<div class="cart-item">
+<div>
+<strong>${item.name}</strong><br>
+📦 ${weightText} • ✨ Silver Packet<br>
+₹${item.price} × ${item.quantity} = <strong>₹${itemTotal}</strong>
+</div>
+<div class="qty-controls">
+<button onclick="decreaseQty(${index})">−</button>
+<span class="qty">${item.quantity}</span>
+<button onclick="increaseQty(${index})">+</button>
+</div>
+</div>`;
+});
+
+document.getElementById("cartTotal").innerText=total;
+document.getElementById("formTotal").innerText=total;
+}
+
+
+function setupPaymentOptions(){
+document.querySelectorAll('input[name="paymentMethod"]').forEach(r=>{
+r.addEventListener('change',()=>{
+document.getElementById("upiPayArea").style.display=
+r.checked && r.value==="UPI" ? "block" : "none";
+});
+});
+}
+
+function payViaUPI(){
+if(cart.length===0){alert("कृपया पहले Product Cart में जोड़ें।");return}
+let total=cart.reduce((sum,item)=>sum+item.price*item.quantity,0);
+const upiId="7894505926-3@ybl";
+const upiUrl="upi://pay?pa="+encodeURIComponent(upiId)+"&pn="+encodeURIComponent("R@S Enterprises")+"&am="+total.toFixed(2)+"&cu=INR";
+window.location.href=upiUrl;
+}
+
+function placeOrder(){
+const name=document.getElementById("customerName").value.trim();
+const phone=document.getElementById("customerPhone").value.trim();
+const address=document.getElementById("customerAddress").value.trim();
+const whatsapp=document.getElementById("whatsappNumber").value;
+const payment=document.querySelector('input[name="paymentMethod"]:checked').value;
+const delivery=document.querySelector('input[name="deliveryOption"]:checked').value;
+
+if(!name){alert("कृपया अपना नाम लिखें।");return}
+if(!/^[0-9]{10}$/.test(phone)){alert("कृपया सही 10 अंकों का मोबाइल नंबर डालें।");return}
+if(!address){alert("कृपया अपना पूरा Address लिखें।");return}
+if(cart.length===0){alert("कृपया पहले Product Cart में जोड़ें।");return}
+
+let total=0;
+let message="NEW ORDER - R@S ENTERPRISES\n\n";
+message+="Customer Name: "+name+"\n";
+message+="Customer Mobile: "+phone+"\n";
+message+="Address: "+address+"\n";
+message+="Payment Method: "+payment+"\n";
+if(payment==="UPI") message+="UPI ID: 7894505926-3@ybl\n";
+message+="Delivery Option: "+delivery+"\n\n";
+message+="ORDER DETAILS:\n";
+
+cart.forEach(item=>{
+const itemTotal=item.price*item.quantity;
+total+=itemTotal;
+const weightText=item.weight===1000?"1kg":item.weight+"g";
+message+=item.name+" | "+weightText+" | Silver Packet | Qty: "+item.quantity+" | Rs."+itemTotal+"\n";
+});
+
+message+="\nTOTAL AMOUNT: Rs."+total+"\n\nThank you for ordering from R@S Enterprises!";
+
+window.open("https://wa.me/"+whatsapp+"?text="+encodeURIComponent(message),"_blank");
+}
+setupPaymentOptions();
+</script>
+</body>
+</html>
