@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>R@S Enterprises - Premium Tea</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f6f7f4;color:#17351f}
+header{background:#174d2a;color:white;padding:22px 16px;text-align:center}
+header h1{margin:0;font-size:30px}header p{margin:7px 0 0}
+.container{max-width:900px;margin:auto;padding:18px}
+.hero{background:white;border-radius:18px;padding:24px;text-align:center;box-shadow:0 3px 15px #0001;margin-bottom:18px}
+.hero h2{font-size:27px;margin:5px 0}.tea{font-size:65px;margin:8px}
+.card{background:white;border-radius:16px;padding:18px;margin:15px 0;box-shadow:0 2px 10px #0001}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.product{border:1px solid #ddd;border-radius:14px;padding:16px;text-align:center}
+.product h3{margin:5px}.price{font-size:24px;font-weight:bold;margin:8px}
+button{border:0;border-radius:10px;padding:12px 17px;background:#176b38;color:white;font-weight:bold;cursor:pointer}
+button:hover{opacity:.9}.qty{width:60px;padding:10px;margin:8px;border:1px solid #bbb;border-radius:8px}
+input,select,textarea{width:100%;padding:12px;margin:7px 0;border:1px solid #bbb;border-radius:9px;font-size:15px}
+label{font-weight:bold;display:block;margin-top:8px}
+.cart{background:#eef8ef;padding:14px;border-radius:12px}
+.delivery{font-weight:bold;padding:12px;border-radius:10px;margin-top:10px}
+.ok{background:#dff5e4;color:#176b38}.no{background:#ffe5e5;color:#a22}
+.small{font-size:13px;color:#666}.contact a{color:#176b38;font-weight:bold;text-decoration:none}
+footer{background:#123b21;color:white;text-align:center;padding:22px;margin-top:25px}
+</style>
+</head>
+<body>
+<header>
+  <h1>R@S ENTERPRISES</h1>
+  <p>Premium Tea • Silver Packet Packing</p>
+</header>
+
+<div class="container">
+<section class="hero">
+  <div class="tea">🍵</div>
+  <h2>Green Plant Tea</h2>
+  <p>Fresh tea delivered to your home.</p>
+  <p><b>Home Delivery available within 20 KM</b></p>
+</section>
+
+<section class="card">
+<h2>🛍️ Our Products</h2>
+<div class="products">
+  <div class="product">
+    <h3>250g Packet</h3><div class="price">₹80</div>
+    <p>Silver Packet</p>
+    <input class="qty" id="q250" type="number" min="1" value="1">
+    <button onclick="addCart('250g',80,'q250')">Add to Cart</button>
+  </div>
+  <div class="product">
+    <h3>500g Packet</h3><div class="price">₹160</div>
+    <p>Silver Packet</p>
+    <input class="qty" id="q500" type="number" min="1" value="1">
+    <button onclick="addCart('500g',160,'q500')">Add to Cart</button>
+  </div>
+  <div class="product">
+    <h3>1 KG Packet</h3><div class="price">₹299</div>
+    <p>Silver Packet</p>
+    <input class="qty" id="q1000" type="number" min="1" value="1">
+    <button onclick="addCart('1kg',299,'q1000')">Add to Cart</button>
+  </div>
+</div>
+</section>
+
+<section class="card">
+<h2>🛒 Your Cart</h2>
+<div id="cart" class="cart">Cart is empty.</div>
+</section>
+
+<section class="card">
+<h2>🚚 Check Home Delivery</h2>
+<p class="small">Delivery centre: 25.617830, 85.860942</p>
+<button onclick="checkLocation()">📍 Use My Location</button>
+<div id="delivery" class="delivery" style="display:none"></div>
+</section>
+
+<section class="card">
+<h2>📝 Order Form</h2>
+<form onsubmit="placeOrder(event)">
+<label>Name</label><input id="name" required placeholder="आपका नाम">
+<label>Mobile Number</label><input id="phone" required type="tel" placeholder="मोबाइल नंबर">
+<label>Delivery Address</label><textarea id="address" required rows="3" placeholder="पूरा पता"></textarea>
+<label>Payment Method</label>
+<select id="payment" required>
+<option value="">Select Payment Method</option>
+<option>Cash on Delivery (COD)</option>
+<option>UPI</option>
+</select>
+<p class="small">UPI चुनने पर WhatsApp पर order details भेजें। UPI ID/QR अलग से जोड़ने के लिए अपनी UPI ID भेज सकते हैं।</p>
+<button type="submit">📲 WhatsApp पर Order भेजें</button>
+</form>
+</section>
+
+<section class="card contact">
+<h2>📞 Contact</h2>
+<p>WhatsApp 1: <a href="https://wa.me/917894505926">7894505926</a></p>
+<p>WhatsApp 2: <a href="https://wa.me/917383363616">7383363616</a></p>
+</section>
+</div>
+
+<footer>
+R@S ENTERPRISES<br>
+Chiranjeevipur (Shahpur), Bachhwara, Begusarai, Bihar - 851111
+</footer>
+
+<script>
+let cartItems=[];
+const centerLat=25.617830, centerLng=85.860942;
+
+function addCart(product,price,id){
+  const qty=Math.max(1,parseInt(document.getElementById(id).value)||1);
+  const found=cartItems.find(x=>x.product===product);
+  if(found) found.qty+=qty; else cartItems.push({product,price,qty});
+  renderCart();
+}
+function renderCart(){
+  const el=document.getElementById('cart');
+  if(!cartItems.length){el.innerHTML='Cart is empty.';return;}
+  let total=0, out='<ul>';
+  cartItems.forEach((x,i)=>{let t=x.price*x.qty;total+=t;
+    out+=`<li>${x.product} × ${x.qty} = ₹${t} <button onclick="removeItem(${i})">Remove</button></li>`;
+  });
+  out+=`</ul><hr><b>Total: ₹${total}</b>`;
+  el.innerHTML=out;
+}
+function removeItem(i){cartItems.splice(i,1);renderCart();}
+function distanceKm(lat1,lon1,lat2,lon2){
+ const R=6371, dLat=(lat2-lat1)*Math.PI/180,dLon=(lon2-lon1)*Math.PI/180;
+ const a=Math.sin(dLat/2)**2+Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLon/2)**2;
+ return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+}
+function checkLocation(){
+ if(!navigator.geolocation){alert('आपके फोन में location सुविधा उपलब्ध नहीं है।');return;}
+ navigator.geolocation.getCurrentPosition(pos=>{
+   const d=distanceKm(centerLat,centerLng,pos.coords.latitude,pos.coords.longitude);
+   const el=document.getElementById('delivery');el.style.display='block';
+   if(d<=20){el.className='delivery ok';el.innerHTML=`✅ Home Delivery Available — दूरी लगभग ${d.toFixed(1)} KM है।`;}
+   else{el.className='delivery no';el.innerHTML=`❌ 20 KM से बाहर — दूरी लगभग ${d.toFixed(1)} KM है।`;}
+ },()=>alert('Location permission allow करें और फिर दोबारा कोशिश करें।'));
+}
+function placeOrder(e){
+ e.preventDefault();
+ if(!cartItems.length){alert('पहले Cart में product जोड़ें।');return;}
+ let total=cartItems.reduce((s,x)=>s+x.price*x.qty,0);
+ let items=cartItems.map(x=>`${x.product} x ${x.qty} = ₹${x.price*x.qty}`).join('%0A');
+ let msg=`*R@S ENTERPRISES - New Order*%0A%0A*Products:*%0A${items}%0A%0A*Total:* ₹${total}%0A*Name:* ${encodeURIComponent(document.getElementById('name').value)}%0A*Mobile:* ${encodeURIComponent(document.getElementById('phone').value)}%0A*Address:* ${encodeURIComponent(document.getElementById('address').value)}%0A*Payment:* ${encodeURIComponent(document.getElementById('payment').value)}`;
+ window.open(`https://wa.me/917894505926?text=${msg}`,'_blank');
+}
+renderCart();
+</script>
+</body>
+</html>
